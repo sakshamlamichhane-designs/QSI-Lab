@@ -1,15 +1,71 @@
 [build-system]
-requires = ["setuptools>=68"]
+
+requires = [
+    "setuptools>=77",
+    "wheel",
+    "pybind11>=2.11"
+]
+
 build-backend = "setuptools.build_meta"
 
-[project]
-name = "qsi-lab"
-version = "0.1.0"
-description = "Reproducible simulation and stress-testing of quantum error correction"
-requires-python = ">=3.10"
 
-[tool.setuptools]
-package-dir = {"" = "src"}
+
+[project]
+
+name = "scalerqec"
+version = "1.1.0"
+description = "ScaLER: Scalable testing of logical error rate for quantum error correction circuits"
+authors = [
+    {name = "John Ye", email = "yezhuoyang@cs.ucla.edu"}
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: C++",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "stim>=1.15",
+    "pymatching",
+    "sinter",
+    "matplotlib",
+    "numpy",
+    "scipy",
+    "sympy",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+ldpc = ["stimbposd"]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "build",
+    "twine",
+    "stimbposd",
+]
+
+[project.urls]
+Homepage = "https://github.com/yezhuoyang/ScaLERQEC"
+Repository = "https://github.com/yezhuoyang/ScaLERQEC"
+Documentation = "https://yezhuoyang.github.io/ScaLERQEC/"
+Issues = "https://github.com/yezhuoyang/ScaLERQEC/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+scalerqec = ["py.typed", "qepg.pyi"]
